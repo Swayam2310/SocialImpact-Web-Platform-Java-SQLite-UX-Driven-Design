@@ -85,6 +85,7 @@ public class PageST2A implements Handler {
 			</div>
 		</div>
 		<div class='page-content mb-55'>
+		
 			<style>
 				table.reporttable  {
 				  border-collapse: collapse;
@@ -397,7 +398,8 @@ public class PageST2A implements Handler {
 					</div>
 				  </div>
 
-				  <div class='report-details row mt-55'>
+				  <div class='report-details row mt-55'> <br>
+				  <br>
 					<table class='reporttable'>
 						<thead>
 							<tr>
@@ -453,9 +455,11 @@ public class PageST2A implements Handler {
 							<td>9157465</td>
 							<td>12.013</td>
 						</tr>
-					</table>
+					</table> 
 					
-					<div class='report-details row mt-55'>
+					<div class='report-details row mt-55'> <br>
+					<br>
+					<br>
 						<table class='reporttable'>
 							<thead><tr><td>Year</td><td>Population</td><td>Average Temprature</td><td>Country/Region</td></tr></thead>
 							<tr>

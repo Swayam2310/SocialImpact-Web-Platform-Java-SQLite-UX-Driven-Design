@@ -88,16 +88,17 @@
 }
 
 .section-header > h1 {
-  font-size: 40px;
+  font-size: 36px;
   line-height: 40px;
+  text-align: center;
 }
 
 .op-header {
   background: url(img/bg/12.png) no-repeat center center;
   -webkit-background-size: cover;
   background-size: cover;
-  padding-top: 104px;
-  padding-bottom: 137px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   position: relative;
   z-index: 2;
 }
