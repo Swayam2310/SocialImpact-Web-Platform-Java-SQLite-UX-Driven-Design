@@ -76,7 +76,7 @@ public class PageMission implements Handler {
         ArrayList<LGA> lgas = jdbc.getLGAs2016();
 
         // Add HTML for the LGA list
-        html = html + "<h1>All 2016 LGAs in the CTG database (using JDBC Connection)</h1>" + "<ul>";
+        //html = html + "<h1>All 2016 LGAs in the CTG database (using JDBC Connection)</h1>" + "<ul>";
 
         // Finally we can print out all of the LGAs
         for (LGA lga : lgas) {
@@ -94,7 +94,7 @@ public class PageMission implements Handler {
         // Footer
         html = html + """
             <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr23)</p>
+                <p>COSC2803 - Studio  (Apr23)</p>
             </div>
         """;
 
