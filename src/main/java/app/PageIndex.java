@@ -23,7 +23,7 @@ import java.sql.Statement;
 public class PageIndex implements Handler {
 
     // URL of this page relative to http://localhost:7001/
-    public static final String URL = "/";
+    public static final String URL = "PageIndex.html";
 
     @Override
     public void handle(Context context) throws Exception {
@@ -118,7 +118,7 @@ public class PageIndex implements Handler {
         html = html + """
           
             <div class='topnav'>
-                <a href='/'>Homepage</a>
+                <a href='PageIndex.html'>Homepage</a>
                 <a href='mission.html'>Our Mission</a>
                 <a href='page2A.html'>Sub Task 2.A</a>
                 <a href='page2B.html'>Sub Task 2.B</a>
@@ -274,7 +274,7 @@ public class PageIndex implements Handler {
     </style>
 
     <div class="container">
-        <h1>Looking forward to the Webiste!</h1>
+        <h1>Looking forward to the Website!</h1>
         <p>
             Explore the data and insights on global population and temperature changes over the years.
         </p>
@@ -353,15 +353,38 @@ public class PageIndex implements Handler {
 
 
             """;
-        // Get the ArrayList of Strings of all LGAs
-        ArrayList<String> lgaNames = getLGAs2016();
+    html = html + """
+           
 
+
+
+<h1>The form method="post" attribute</h1>
+
+<form action="PageIndex.html" method="post" target="_blank">
+  <label for="startYear">Start Year:</label>
+  <input type="number" id="startYear" name="startYear" required><br><br>
+  <label for="endYear">End Year:</label>
+  <input type="number" id="endYear" name="endYear" required><br><br>
+  <input type="submit" value="Submit">
+</form>
+
+<p>Click on the submit button, and the input will be sent to a page on the server called "done".</p>
+
+
+
+            """;
+        // Get the ArrayList of Strings of all LGAs
+        //ArrayList<String> lgaNames = getLGAs2016();  
         
+        ArrayList<CityTemp> tempOfCities = getListOfCityTemp(2012, "Tirana");
 
         // Finally we can print out all of the LGAs
-        for (String name : lgaNames) {
-            html = html + "<li>" + name + "</li>";
+        for (CityTemp cityData : tempOfCities) {
+            html = html + "<li> CityName:" + cityData.getCityName() + "</li>";
         }
+
+        System.out.println(html);
+
 
         // Finish the List HTML
        // html = html + "</ul>";
@@ -383,6 +406,75 @@ public class PageIndex implements Handler {
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage
         context.html(html);
+    }
+
+    public static final String DATABASE = "jdbc:sqlite:database/climate.db";
+    /**
+     * Get the names of the LGAs in the database.
+     */
+    public ArrayList<CityTemp> getListOfCityTemp(int yearToSelect, String cityNameToSelectFor) {
+        // Create the ArrayList of LGA objects to return
+        ArrayList<CityTemp> listOfCityTemp = new ArrayList<CityTemp>();
+
+        // Setup the variable for the JDBC connection
+        Connection connection = null;
+    
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            System.out.println("connection status, closed?:"+ connection.isClosed());
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT AverageTemperature, city,Year FROM CITY WHERE year="+yearToSelect +" and City=\""+cityNameToSelectFor+"\"";
+            System.out.println(query);
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+            while (results.next()) {
+                // Lookup the columns we need
+                double aveTemp = results.getDouble("AverageTemperature");
+                String cityName  = results.getString("city");
+                int yearOfTemp  = results.getInt("year");
+
+                System.out.println(aveTemp);
+                System.out.println(cityName);
+                System.out.println(yearOfTemp);
+
+                String cityCode = cityName;
+
+
+                // Create a CityTemp Object
+                CityTemp cityData = new CityTemp(cityCode, cityName, yearOfTemp, aveTemp);
+
+                // Add the lga object to the array
+                listOfCityTemp.add(cityData);
+            }
+
+            // Close the statement because we are done with it
+            statement.close();
+        } catch (SQLException e) {
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+            // Safety code to cleanup
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        // Finally we return all of the lga
+        return listOfCityTemp;
     }
 
 
@@ -434,6 +526,8 @@ public class PageIndex implements Handler {
                 System.err.println(e.getMessage());
             }
         }
+
+        
 
         // Finally we return all of the lga
         return lgas;

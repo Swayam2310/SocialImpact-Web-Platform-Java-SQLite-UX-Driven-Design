@@ -17,6 +17,12 @@ import java.sql.Statement;
  */
 public class JDBCConnection {
 
+    public static void main(String[] args) {
+
+        JDBCConnection jdbcConnection = new JDBCConnection();
+        jdbcConnection.getListOfCityTemp(2012, "Tirana");
+    }
+
     // Name of database file (contained in database folder)
     //public static final String DATABASE = "jdbc:sqlite:database/ctg.db";
      public static final String DATABASE = "jdbc:sqlite:database/climate.db";
@@ -33,38 +39,48 @@ public class JDBCConnection {
      * @return
      *    Returns an ArrayList of LGA objects
      */
-    public ArrayList<LGA> getLGAs2016() {
+    public ArrayList<CityTemp> getListOfCityTemp(int yearToSelect, String cityNameToSelectFor) {
         // Create the ArrayList of LGA objects to return
-        ArrayList<LGA> lgas = new ArrayList<LGA>();
+        ArrayList<CityTemp> listOfCityTemp = new ArrayList<CityTemp>();
 
         // Setup the variable for the JDBC connection
         Connection connection = null;
-
+    
         try {
             // Connect to JDBC data base
             connection = DriverManager.getConnection(DATABASE);
+
+            System.out.println("connection status, closed?:"+ connection.isClosed());
 
             // Prepare a new SQL Query & Set a timeout
             Statement statement = connection.createStatement();
             statement.setQueryTimeout(30);
 
             // The Query
-            String query = "SELECT * FROM LGA WHERE year='2016'";
-            
+            String query = "SELECT AverageTemperature, city,Year FROM CITY WHERE year="+yearToSelect +" and City=\""+cityNameToSelectFor+"\"";
+            System.out.println(query);
             // Get Result
             ResultSet results = statement.executeQuery(query);
 
             // Process all of the results
             while (results.next()) {
                 // Lookup the columns we need
-                int code     = results.getInt("code");
-                String name  = results.getString("name");
+                double aveTemp = results.getDouble("AverageTemperature");
+                String cityName  = results.getString("city");
+                int yearOfTemp  = results.getInt("year");
 
-                // Create a LGA Object
-                LGA lga = new LGA(code, name, 2016);
+                System.out.println(aveTemp);
+                System.out.println(cityName);
+                System.out.println(yearOfTemp);
+
+                String cityCode = cityName;
+
+
+                // Create a CityTemp Object
+                CityTemp cityData = new CityTemp(cityCode, cityName, yearOfTemp, aveTemp);
 
                 // Add the lga object to the array
-                lgas.add(lga);
+                listOfCityTemp.add(cityData);
             }
 
             // Close the statement because we are done with it
@@ -85,8 +101,8 @@ public class JDBCConnection {
         }
 
         // Finally we return all of the lga
-        return lgas;
+        return listOfCityTemp;
     }
-
+        
     // TODO: Add your required methods here
 }

@@ -1,5 +1,7 @@
 package app;
 
+import java.util.ArrayList;
+
 import io.javalin.Javalin;
 import io.javalin.core.util.RouteOverviewPlugin;
 
@@ -36,6 +38,11 @@ public class App {
         configureRoutes(app);
     }
 
+    public ArrayList<CityTemp> getTempOfCity(int year, String cityName, String state, String country) {
+        JDBCConnection jdbcConnection = new JDBCConnection();
+        return jdbcConnection.getListOfCityTemp(year, cityName);
+    }
+
     public static void configureRoutes(Javalin app) {
         // All webpages are listed here as GET pages
         app.get(PageIndex.URL, new PageIndex());
@@ -46,12 +53,12 @@ public class App {
         app.get(PageST3B.URL, new PageST3B());
 
         // Add / uncomment POST commands for any pages that need web form POSTS
-        // app.post(PageIndex.URL, new PageIndex());
-        // app.post(PageMission.URL, new PageMission());
-        // app.post(PageST2A.URL, new PageST2A());
-        // app.post(PageST2B.URL, new PageST2B());
-        // app.post(PageST3A.URL, new PageST3A());
-        // app.post(PageST3B.URL, new PageST3B());
+        app.post(PageIndex.URL, new PageIndex());
+        app.post(PageMission.URL, new PageMission());
+        app.post(PageST2A.URL, new PageST2A());
+        app.post(PageST2B.URL, new PageST2B());
+        app.post(PageST3A.URL, new PageST3A());
+        app.post(PageST3B.URL, new PageST3B());
     }
 
 }
