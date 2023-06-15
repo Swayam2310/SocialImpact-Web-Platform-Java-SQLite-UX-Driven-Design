@@ -1,7 +1,7 @@
 package app;
 
 import java.util.ArrayList;
-
+import java.util.Scanner;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -17,10 +17,19 @@ import java.sql.Statement;
  */
 public class JDBCConnection {
 
-    public static void main(String[] args) {
+      public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the year to select: ");
+        int yearToSelect = scanner.nextInt();
+
+        System.out.print("Enter the city name to select: ");
+        String cityNameToSelectFor = scanner.next();
+
+        scanner.close();
 
         JDBCConnection jdbcConnection = new JDBCConnection();
-        jdbcConnection.getListOfCityTemp(2012, "Tirana");
+        jdbcConnection.getListOfCityTemp(yearToSelect, cityNameToSelectFor);
     }
 
     // Name of database file (contained in database folder)
@@ -70,7 +79,7 @@ public class JDBCConnection {
                 int yearOfTemp  = results.getInt("year");
 
                 System.out.println(aveTemp);
-                System.out.println(cityName);
+                System.out.println("City:"+cityName);
                 System.out.println(yearOfTemp);
 
                 String cityCode = cityName;

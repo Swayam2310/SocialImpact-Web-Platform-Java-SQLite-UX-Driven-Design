@@ -23,7 +23,7 @@ import java.sql.Statement;
 public class PageIndex implements Handler {
 
     // URL of this page relative to http://localhost:7001/
-    public static final String URL = "PageIndex.html";
+    public static final String URL = "/";
 
     @Override
     public void handle(Context context) throws Exception {
@@ -118,7 +118,7 @@ public class PageIndex implements Handler {
         html = html + """
           
             <div class='topnav'>
-                <a href='PageIndex.html'>Homepage</a>
+                <a href='/'>Homepage</a>
                 <a href='mission.html'>Our Mission</a>
                 <a href='page2A.html'>Sub Task 2.A</a>
                 <a href='page2B.html'>Sub Task 2.B</a>
@@ -151,7 +151,7 @@ public class PageIndex implements Handler {
         html = html + """
       
     <div class="container">
-        <h1>Welcome to our Climate Change Website!</h1>
+        <h1>Welcome to our ClimateActionHub!</h1>
         <p>
             Explore the data and insights on global population and temperature changes over the years.
         </p>
@@ -186,14 +186,14 @@ public class PageIndex implements Handler {
   </div>
 
   <div class="hero" style ="color: orange;">
-    <h2><b>“Look deep into nature, and then you will understand everything better.”</b>
-    — <u> Albert Einstein</u></h2>
-    <p>Take action today for a sustainable future</p>
-    <a href="about.html" class="cta-button">Learn More</a>
+    <h2><b>“Look deep into nature, and then you will understand everything better.”</b></h2>
+    — <h3> <u> Albert Einstein</u></h3>
+    <p>More About Climate.....</p>
+    <a href="" class="cta-button">Learn More</a>
   </div>
 <div class="container">
   <div class="content" style="color: black;">
-    <h2>More About Climate Change </h2>
+    
     <p>We are dedicated to raising awareness about climate change and providing valuable insights into the global environmental challenges we face today. Our website serves as a platform for learning, sharing information, and taking action to combat climate change.</p>
 
 <p>Climate change refers to long-term shifts in temperature and weather patterns on Earth, primarily caused by human activities such as burning fossil fuels, deforestation, and industrial processes. These activities release greenhouse gases into the atmosphere, trapping heat and leading to global warming. </p>
@@ -279,42 +279,7 @@ public class PageIndex implements Handler {
             Explore the data and insights on global population and temperature changes over the years.
         </p>
 
-        <h2>Data Summary</h2>
-        <form>
-            <p>
-                Population Data:
-                <input type="text" id="populationFirstYear" placeholder="First Year">
-                -
-                <input type="text" id="populationLastYear" placeholder="Last Year"> <br>
-                <p> World Population: 5 billion - 8 billion  <br>
-                Total Years: <span id="populationTotalYears"></span>
-                </p>
-            </p>
-            <p>
-                Temperature Data:
-                <input type="text" id="temperatureFirstYear" placeholder="First Year">
-                -
-                <input type="text" id="temperatureLastYear" placeholder="Last Year"> <br>
-                <p> Global Temperature: 5°C - 32°C <br>
-                Total Years: <span id="temperatureTotalYears"></span>
-                </p>
-            </p>
-            <button type="SUBMIT">Submit</button>
-        </form>
-
-        <div class="summary">
-            <h3>Summary</h3>
-            <p>
-                Population Data: <span id="populationRange">2 Million</span> |
-                World Population: <span id="worldPopulation">8 Million</span> |
-                Total Years: <span id="populationYears">20 Years</span>
-            </p>
-            <p>
-                Temperature Data: <span id="temperatureRange">10°C - 25°C</span> |
-                Global Temperature: <span id="globalTemperature">20°C</span> |
-                Total Years: <span id="temperatureYears">20 Years</span>
-            </p>
-        </div>
+    </div> 
 
         <script>
             // Function to handle form submission
@@ -354,19 +319,14 @@ public class PageIndex implements Handler {
 
             """;
     html = html + """
-           
-
-
-
-<h1>The form method="post" attribute</h1>
-
-<form action="PageIndex.html" method="post" target="_blank">
-  <label for="startYear">Start Year:</label>
-  <input type="number" id="startYear" name="startYear" required><br><br>
-  <label for="endYear">End Year:</label>
-  <input type="number" id="endYear" name="endYear" required><br><br>
-  <input type="submit" value="Submit">
-</form>
+   <p> Click below to Explore the Climate Change data using ClimateActionHub </p>     
+       
+    <ul>
+                <li> <a href='page2A.html'>Second PAge</a> </li>
+                <li> <a href='page3A.html'>Third Page</a> </li>
+            </ul>
+            
+ 
 
 <p>Click on the submit button, and the input will be sent to a page on the server called "done".</p>
 
@@ -395,7 +355,7 @@ public class PageIndex implements Handler {
         // Footer
         html = html + """
             <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr23)</p>
+                <p>Made By : Swayam Mayankkumar Patel</p>
             </div>
         """;
 
@@ -407,7 +367,7 @@ public class PageIndex implements Handler {
         // Makes Javalin render the webpage
         context.html(html);
     }
-
+    
     public static final String DATABASE = "jdbc:sqlite:database/climate.db";
     /**
      * Get the names of the LGAs in the database.

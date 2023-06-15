@@ -66,7 +66,166 @@ public class PageST3A implements Handler {
 
         // Add HTML for the page content
         html = html + """
-            <p>Subtask 3.A page content</p>
+
+
+    <title>Temperature Analysis</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #333;
+        }
+
+        label {
+            font-weight: 700;
+        }
+
+        input[type="number"], select, input[type="text"] {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+    </style>
+    <script>
+        function calculateAverage() {
+            // Get user input values
+            var startingYear = parseInt(document.getElementById("startingYear").value);
+            var timePeriod = parseInt(document.getElementById("timePeriod").value);
+            var region = document.getElementById("region").value;
+
+            // Perform calculations and display the average temperature
+            // Code for calculating the average temperature goes here
+
+            // Display the average temperature on the page
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Average temperature for the selected period: " + averageTemperature;
+        }
+
+        function compareAverages() {
+            // Get user input values for starting years and regions
+            var startingYears = [];
+            var regions = [];
+            // Code for getting user input values for starting years and regions goes here
+
+            // Perform calculations and display the difference in averages
+            // Code for calculating the difference in averages goes here
+
+            // Display the difference in averages on the page
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Difference in averages: " + differenceInAverages;
+        }
+
+        function compareRegions() {
+            // Get user input values for regions
+            var regions = [];
+            // Code for getting user input values for regions goes here
+
+            // Perform calculations and display the averages and difference in averages
+            // Code for calculating the averages and difference in averages goes here
+
+            // Display the averages and difference in averages on the page
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Averages: " + averages + "<br>"
+                + "Difference in averages: " + differenceInAverages;
+        }
+
+        function sortRegions() {
+            // Get user input values for starting years and regions
+            var startingYears = [];
+            // Code for getting user input values for starting years goes here
+
+            // Perform calculations and sort the regions by the difference in averages
+            // Code for sorting the regions goes here
+
+            // Display the sorted regions on the page
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Sorted regions: " + sortedRegions;
+        }
+
+        function filterResults() {
+            // Get user input values for population range and average temperature change
+            var populationRange = document.getElementById("populationRange").value;
+            var temperatureChange = document.getElementById("temperatureChange").value;
+
+            // Perform calculations and filter the results
+            // Code for filtering the results goes here
+
+            // Display the filtered results on the page
+            var resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = "Filtered results: " + filteredResults;
+        }
+    </script>
+
+
+    <h1>Temperature Analysis</h1>
+
+    <h2>Sub-Task A: Identify changes in temperature over extended periods</h2>
+
+    <h3>Calculate Average Temperature</h3>
+    <label for="startingYear">Starting Year:</label>
+    <input type="number" id="startingYear">
+    <label for="timePeriod">Time Period (in years):</label>
+    <input type="number" id="timePeriod">
+    <label for="region">Geographic Region:</label>
+    <select id="region">
+        <option value="global">Global</option>
+        <option value="country">Country</option>
+        <option value="state">State</option>
+        <option value="city">City</option>
+    </select>
+    <button onclick="calculateAverage()">Calculate</button>
+
+    <h3>Compare Averages</h3>
+    <!-- Input fields for multiple starting years and regions go here -->
+    <button onclick="compareAverages()">Compare</button>
+
+    <h3>Compare Regions</h3>
+    <!-- Input fields for multiple regions go here -->
+    <button onclick="compareRegions()">Compare</button>
+
+    <h3>Sort Regions</h3>
+    <!-- Input fields for multiple starting years go here -->
+    <button onclick="sortRegions()">Sort</button>
+
+    <h3>Filter Results</h3>
+    <label for="populationRange">Population Range:</label>
+    <input type="text" id="populationRange">
+    <label for="temperatureChange">Average Temperature Change:</label>
+    <input type="text" id="temperatureChange">
+    <button onclick="filterResults()">Filter</button>
+
+    <div id="result"></div>
+
+
             """;
 
         // Close Content div
