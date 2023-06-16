@@ -43,6 +43,179 @@ public class JDBCConnection {
         System.out.println("Created JDBC Connection Object");
     }
 
+    static int startTempYear;
+
+    public static int getStartTempYear(){
+        Connection connection = null;
+        
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT Year FROM GlobalTempObservation ORDER BY ROWID ASC LIMIT 1";
+            
+            //
+
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+                 while (results.next()) {
+                //     // Lookup the columns we need
+                     startTempYear  = results.getInt("Year");
+                    
+
+            // Close the statement because we are done with it
+            statement.close();
+              } 
+             
+            }
+              catch (SQLException e) {
+
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+
+            // Safety code to cleanup
+
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return startTempYear;
+    }
+
+    static int endTempYear;
+
+    public static int getEndTempYear(){
+        Connection connection = null;
+        
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT Year FROM GlobalTempObservation ORDER BY ROWID DESC LIMIT 1";
+            
+
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+                 while (results.next()) {
+                //     // Lookup the columns we need
+                     endTempYear  = results.getInt("Year");
+                     
+
+            // Close the statement because we are done with it
+            statement.close();
+              } 
+             
+            }
+              catch (SQLException e) {
+
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+
+            // Safety code to cleanup
+
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        return endTempYear;
+    }
+    // Method to get the first and last year's temps from entire temperature dataset
+    static float startTotalTempRange;
+    static float endTotalTempRange;
+    static String totalTempRange;
+
+    public static String getTotalTempRange(){
+        Connection connection = null;
+        
+        try {
+            // Connect to JDBC data base
+            connection = DriverManager.getConnection(DATABASE);
+
+            // Prepare a new SQL Query & Set a timeout
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(30);
+
+            // The Query
+            String query = "SELECT AvgTemp FROM GlobalTempObservation ORDER BY ROWID ASC LIMIT 1";
+            
+            // Get Result
+            ResultSet results = statement.executeQuery(query);
+
+            // Process all of the results
+                 while (results.next()) {
+                   // Lookup the columns we need
+                     startTotalTempRange  = results.getFloat("AvgTemp");
+                     
+
+                 }
+
+            // The Query 2
+            query = "SELECT AvgTemp FROM GlobalTempObservation ORDER BY ROWID DESC LIMIT 1";
+            
+            // Get Result 2
+            results = statement.executeQuery(query);
+
+            // Process all of the results 2
+                 while (results.next()) {
+                   // Lookup the columns we need 2
+                     endTotalTempRange  = results.getFloat("AvgTemp");
+                     
+
+            // Close the statement because we are done with it 2
+            statement.close();
+              } 
+             
+            }
+              catch (SQLException e) {
+
+            // If there is an error, lets just pring the error
+            System.err.println(e.getMessage());
+        } finally {
+
+            // Safety code to cleanup
+
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                // connection close failed.
+                System.err.println(e.getMessage());
+            }
+        }
+
+        totalTempRange = startTotalTempRange + " - " + endTotalTempRange; 
+
+        return totalTempRange;
+    }
     /**
      * Get all of the LGAs in the database.
      * @return
