@@ -28,219 +28,293 @@ public class PageST3A implements Handler {
     @Override
     public void handle(Context context) throws Exception {
         // Create a simple HTML webpage in a String
-        String html = "<html>";
+            String html = "<html>";
 
         // Add some Head information
         html = html + "<head>" + 
-               "<title>Subtask 3.1</title>";
+               " <title>Temperature Analysis</title>";
 
         // Add some CSS (external file)
         html = html + "<link rel='stylesheet' type='text/css' href='common.css' />";
+     html = html + "<link rel='stylesheet' type='text/css' href='style.css'>";
+    html = html + "<link rel='stylesheet' type='text/css' href='effect.css'>";
+    html = html + "<link rel='stylesheet' type='text/css' href='responsive.css'>";
+    
+       
         html = html + "</head>";
 
-        // Add the body
+        // Add the body     
         html = html + "<body>";
 
         // Add the topnav
         // This uses a Java v15+ Text Block
         html = html + """
-            <div class='topnav'>
-                <a href='/'>Homepage</a>
-                <a href='mission.html'>Our Mission</a>
-                <a href='page2A.html'>Sub Task 2.A</a>
-                <a href='page2B.html'>Sub Task 2.B</a>
-                <a href='page3A.html'>Sub Task 3.A</a>
-                <a href='page3B.html'>Sub Task 3.B</a>
-            </div>
+           <div class='page-wrapper'>
+        <!-- header start -->
+        <header class='header1'>
+            <nav class='navbar nav-solid mb-0'>
+                <div class='container-fluid'>
+                    <div class='navbar-header'>
+                        <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='#main-menu'> <span></span>  <span></span>  <span></span> 
+                        </button>
+                        <a class='navbar-brand' href='/'>
+                            <img src='logo.png' alt='logo' width="200px">
+                        </a>
+                    </div>
+                    <div class='collapse navbar-collapse navbar-right' id='main-menu'>
+                        <ul class='nav navbar-nav f1 mainMenu text-capitalize'>
+                            <li class='active'> <a href='/'>Home</a>
+                            </li>
+                            <li><a href='mission.html'>Mission</a>
+                            </li>
+                            <li> <a href='page2A.html'>Sub Task 2A</a>
+                            </li>
+                            <li><a href='page2B.html'>Sub Task 2B</a>
+                            </li>
+                            <li> <a href='page3A.html'>Sub Task 3A</a>
+                            </li>
+                            <li><a href='page3B.html'>Sub Task 3B</a>
+                            </li>
+
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+        </header>
         """;
-
-        // Add header content block
-        html = html + """
-            <div class='header'>
-                <h1>Subtask 3.A</h1>
-            </div>
-        """;
-
-        // Add Div for page Content
-        html = html + "<div class='content'>";
-
+         html= html+"""
+               
+                <div class="op-header">
+			<div class="section-header text-center">
+				<h2 class="f2 c3">All About....</h2>
+				<h1 class="f1 fw-7 cw">Temperature Analysis</h1>
+			</div>
+		</div>""";
+        
+    
+        html = html + "<div class='page-content'>";
+ 
         // Add HTML for the page content
         html = html + """
+           
 
-
-    <title>Temperature Analysis</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-        }
+      h1, h2, h3 {
+    color: #333;
+}
 
-        h1, h2, h3 {
-            color: #333;
-        }
+label {
+    font-weight: 700;
+}
 
-        label {
-            font-weight: 700;
-        }
+input[type="number"], select, input[type="text"] {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    width: 200px;
+}
 
-        input[type="number"], select, input[type="text"] {
-            padding: 8px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            width: 200px;
-        }
+button {
+    padding: 10px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top:20px;
+}
 
-        button {
-            padding: 10px 16px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+button:hover {
+    background-color: #45a049;
+}
 
-        button:hover {
-            background-color: #45a049;
-        }
+#result {
+    margin-top: 30px;
+   
+    margin-bottom: 30px;
+}
 
-        #result {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            background-color: #fff;
-        }
+.sub-task {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+.sub-task-item{margin-top: 25px}
+.sub-task h3 {
+    margin-top: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    font-weight: bold;
+}
+
     </style>
-    <script>
-        function calculateAverage() {
-            // Get user input values
-            var startingYear = parseInt(document.getElementById("startingYear").value);
-            var timePeriod = parseInt(document.getElementById("timePeriod").value);
-            var region = document.getElementById("region").value;
 
-            // Perform calculations and display the average temperature
-            // Code for calculating the average temperature goes here
+    <div class="container">
+        
+        <div class="sub-task">
+            <h2>Sub-Task A: Identify changes in temperature over extended periods</h2>
 
-            // Display the average temperature on the page
-            var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Average temperature for the selected period: " + averageTemperature;
-        }
+            <div class="sub-task-item">
+                <h3>Calculate Average Temperature</h3>
+                <form>
+                    <label for="startingYear">Starting Year:</label>
+                    <input type="number" id="startingYear">
 
-        function compareAverages() {
-            // Get user input values for starting years and regions
-            var startingYears = [];
-            var regions = [];
-            // Code for getting user input values for starting years and regions goes here
+                    <label for="timePeriod">Time Period (in years):</label>
+                    <input type="number" id="timePeriod">
 
-            // Perform calculations and display the difference in averages
-            // Code for calculating the difference in averages goes here
+                    <label for="region">Geographic Region:</label>
+                    <select id="region">
+                        <option value="global">Global</option>
+                        <option value="country">Country</option>
+                        <option value="state">State</option>
+                        <option value="city">City</option>
+                    </select>
 
-            // Display the difference in averages on the page
-            var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Difference in averages: " + differenceInAverages;
-        }
+                    <button onclick="calculateAverage()">Calculate</button>
+                </form>
+            </div>
 
-        function compareRegions() {
-            // Get user input values for regions
-            var regions = [];
-            // Code for getting user input values for regions goes here
+            <div class="sub-task-item">
+                <h3>Compare Averages</h3>
+                <!-- Input fields for multiple starting years and regions go here -->
+                <button onclick="compareAverages()">Compare</button>
+            </div>
 
-            // Perform calculations and display the averages and difference in averages
-            // Code for calculating the averages and difference in averages goes here
+            <div class="sub-task-item">
+                <h3>Compare Regions</h3>
+                <!-- Input fields for multiple regions go here -->
+                <button onclick="compareRegions()">Compare</button>
+            </div>
 
-            // Display the averages and difference in averages on the page
-            var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Averages: " + averages + "<br>"
-                + "Difference in averages: " + differenceInAverages;
-        }
-
-        function sortRegions() {
-            // Get user input values for starting years and regions
-            var startingYears = [];
-            // Code for getting user input values for starting years goes here
-
-            // Perform calculations and sort the regions by the difference in averages
-            // Code for sorting the regions goes here
-
-            // Display the sorted regions on the page
-            var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Sorted regions: " + sortedRegions;
-        }
-
-        function filterResults() {
-            // Get user input values for population range and average temperature change
-            var populationRange = document.getElementById("populationRange").value;
-            var temperatureChange = document.getElementById("temperatureChange").value;
-
-            // Perform calculations and filter the results
-            // Code for filtering the results goes here
-
-            // Display the filtered results on the page
-            var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Filtered results: " + filteredResults;
-        }
-    </script>
-
-
-    <h1>Temperature Analysis</h1>
-
-    <h2>Sub-Task A: Identify changes in temperature over extended periods</h2>
-
-    <h3>Calculate Average Temperature</h3>
-    <label for="startingYear">Starting Year:</label>
-    <input type="number" id="startingYear">
-    <label for="timePeriod">Time Period (in years):</label>
-    <input type="number" id="timePeriod">
-    <label for="region">Geographic Region:</label>
-    <select id="region">
-        <option value="global">Global</option>
-        <option value="country">Country</option>
-        <option value="state">State</option>
-        <option value="city">City</option>
-    </select>
-    <button onclick="calculateAverage()">Calculate</button>
-
-    <h3>Compare Averages</h3>
-    <!-- Input fields for multiple starting years and regions go here -->
-    <button onclick="compareAverages()">Compare</button>
-
-    <h3>Compare Regions</h3>
-    <!-- Input fields for multiple regions go here -->
-    <button onclick="compareRegions()">Compare</button>
-
+            <div class="sub-task-item">
     <h3>Sort Regions</h3>
-    <!-- Input fields for multiple starting years go here -->
+    <label for="sortOption">Sort By:</label>
+    <select id="sortOption">
+        <option value="az">A-Z</option>
+        <option value="highest">Highest - Lowest Temperature</option>
+        <option value="lowest">Lowest - Highest Temperature</option>
+    </select>
     <button onclick="sortRegions()">Sort</button>
+</div>
 
-    <h3>Filter Results</h3>
-    <label for="populationRange">Population Range:</label>
-    <input type="text" id="populationRange">
-    <label for="temperatureChange">Average Temperature Change:</label>
-    <input type="text" id="temperatureChange">
-    <button onclick="filterResults()">Filter</button>
+            <div class="sub-task-item">
+                <h3>Filter Results</h3>
+                <form>
+                    <label for="populationRange">Population Range:</label>
+                    <input type="text" id="populationRange">
 
-    <div id="result"></div>
+                    <label for="temperatureChange">Average Temperature Change:</label>
+                    <input type="text" id="temperatureChange">
+
+                    <button onclick="filterResults()">Filter</button>
+                </form>
+            </div>
+        </div>
+        
+        <div id="result">
+            <h3>Search Result</h3>
+            <table class='reporttable'>
+                <thead>
+                    <tr>
+                        <th>Starting Year</th>
+                        <th>Time Period</th>
+                        <th>Region</th>
+                        <th>Average Temperature</th>
+                        <!-- Add more table headers as needed -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Table rows with data go here -->
+                    <tr>
+                        <td>2000</td>
+                        <td>10</td>
+                        <td>Global</td>
+                        <td>25.6</td>
+                    </tr>
+                    <tr>
+                        <td>2010</td>
+                        <td>5</td>
+                        <td>Country</td>
+                        <td>21.2</td>
+                    </tr>
+                    <!-- Add more table rows as needed -->
+                </tbody>
+            </table>
+        </div>
+       
+    </div>
 
 
-            """;
+
+                """;
+
+            
 
         // Close Content div
         html = html + "</div>";
 
         // Footer
-        html = html + """
-            <div class='footer'>
-                <p>COSC2803 - Studio Project Starter Code (Apr23)</p>
+         html = html + """
+             <!-- footer start -->
+        <footer>
+            <div class='footer-top'>
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col-sm-6 mb-xs-30'>
+                            <a href='#'>
+                                <img src='logo.png' alt=''>
+                            </a>
+                        </div>
+                        <div class='col-sm-6'>
+                           
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+            <div class='footer-bottom f1'>
+                <div class='container'>
+                    <p>Made By: Swayam Mayankkumar Patel(s3994439)</p>
+                </div>
+            </div>
+        </footer>
+             </div>
+    <!-- page-wrapper end -->
+    <div class='back2Top bg1'> <i class='fa fa-angle-up fa-2x cw'></i>
+    </div>
         """;
 
-        // Finish the HTML webpage
+        html = html + """
+        <script src='jquery-1.12.4.min.js'></script>
+        <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyDTPlX-43R1TpcQUyWjFgiSfL_BiGxslZU'></script>
+        <script src='html5lightbox/html5lightbox.js'></script>
+        <script src='bootstrap.min.js'></script>
+        <script src='owl.carousel.js'></script>
+        <script src='numscroller-1.0.js'></script>
+        <script src='jquery.countdown.min.js'></script>
+        <script src='jquery.enllax.min.js'></script>
+        <script src='isotope.js'></script>
+        <script src='magnific-popup.js'></script>
+        <script src='main.js'></script>
+         """;
+
         html = html + "</body>" + "</html>";
-        
 
         // DO NOT MODIFY THIS
         // Makes Javalin render the webpage
