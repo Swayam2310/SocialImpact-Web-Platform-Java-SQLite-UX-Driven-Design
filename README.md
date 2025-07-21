@@ -108,3 +108,4 @@ This folder will not affect a *local* VSCode setup on a computer.
 
 Copyright RMIT University (c) 2023
 
+# SocialImpact-Web-Platform-Java-SQLite-UX-Driven-Design
