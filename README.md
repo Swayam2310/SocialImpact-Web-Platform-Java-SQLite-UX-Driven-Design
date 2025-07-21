@@ -1,7 +1,5 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1aNX3-7e)
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11284407&assignment_repo_type=AssignmentRepo)
-# Studio Project Starter Code (Semester 1 - September 2023)
-Starter code for the Studio Project. This is a simple layout connected to a GitHub Classroom that serves as the basis for implementing the studio project. 
+
+# Studio Project  Code 
 
 This example program provides:
 
@@ -91,7 +89,6 @@ You can modify this file as you wish, for other tables and CSVs. When modifying 
     * Column data being stored
 
 ## Testing on GitHub Codespaces
-In Semester 1 2023, you will have access to GitHub Codespaces through the RMIT GitHub Organisation. It is highly recommended to test that your code is fully functional in Codespaces.
 
 GitHub Codespaces will be used as the common location to test and verify your studio project. Specifically, GitHub Codespaces will be used to verify your project in the event the code does not correctly function on the local assessor's computer.
 
@@ -100,12 +97,3 @@ The ```.devcontainer``` folder contains configuration files for GitHub Codespace
 This ensures that when the GitHub classroom is cloned, the workspace is correctly configured for Java (V16) and with the required VSCode extensions.
 This folder will not affect a *local* VSCode setup on a computer.
 
-**🚨 DO NOT MODIFY THE CONTENTS OF THIS FOLDER. 🚨**
-
-# Authors
-* Dr. Timothy Wiley, School of Computing Technologies, STEM College, RMIT University.
-* Prof. Santha Sumanasekara, School of Computing Technologies, STEM College, RMIT University.
-
-Copyright RMIT University (c) 2023
-
-# SocialImpact-Web-Platform-Java-SQLite-UX-Driven-Design
